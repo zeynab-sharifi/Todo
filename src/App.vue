@@ -1,37 +1,34 @@
-<script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from './components/HelloWorld.vue'
+<script>
+import FooterTodo from'./components/FooterTodo.vue';
+import Todo from'./components/Todo.vue';
+import InputTodo from'./components/InputTodo.vue';
+import Header from'./components/Header.vue';
+
+export default{
+  components :{
+    'custom-header' : Header,
+    InputTodo,
+    Todo,
+    FooterTodo
+  }
+}
 </script>
 
 <template>
       <div class="wrapper">
-        <header>Todo App</header>
-        <div class="inputField">
-          <input type="text" placeholder="Add your new todo">
-          <button><i class="fas fa-plus"></i></button>
-        </div>
-        <ul class="todoList">
-          <li>
-            joscos
-            <span class="icon"><i class="fa fa-trash"></i></span>
-            <span class="icone"><i class="fas fa-edit"></i></span>
-          </li>
-          <li>
-            sdjpsdj
-            <span class="icon"><i class="fa fa-trash"></i></span>
-            <span class="icone"><i class="fas fa-edit"></i></span>
-          </li>
-          <li>
-            sdodsvopmals]-pwlcg.uoglufhb.jhhiuoiuiknkbjvs
-            <span class="icon"><i class="fa fa-trash"></i></span>
-            <span class="icone"><i class="fas fa-edit"></i></span>
-          </li>
-        </ul>
-        <div class="footer">
-          <span>You have <span class="pendingTasks"></span> pending tasks</span>
-          <button>Clear All</button>
-        </div>
+        <!-- add header todo list -->
+        <custom-header></custom-header>
+
+        <!-- input todo  -->
+        <InputTodo></InputTodo>
+        
+        <!-- todo list -->
+        <Todo></Todo>
+        
+        <!-- footer todo app -->
+        <FooterTodo></FooterTodo>
+        
+        
       </div>
 </template>
 
@@ -61,6 +58,11 @@ body{
   /* overflow: hidden; */
   padding: 10px;
   background: linear-gradient(to bottom, #26f0c1 0%, #e84949 100%);
+}
+header hr{
+  width: 3rem;
+  margin: 20px auto;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .12);
 }
 .wrapper{
   background: #fff;

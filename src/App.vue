@@ -1,6 +1,6 @@
 <script>
 import FooterTodo from'./components/FooterTodo.vue';
-import Todo from'./components/Todo.vue';
+import TodoList from'./components/TodoList.vue';
 import InputTodo from'./components/InputTodo.vue';
 import Header from'./components/Header.vue';
 
@@ -8,10 +8,28 @@ export default{
   components :{
     'custom-header' : Header,
     InputTodo,
-    Todo,
+    TodoList,
     FooterTodo
+  },
+  data() {
+    return {
+       todos : []
+    }
+  },
+  methods :{
+    addTodo(text){
+      this.todos.push({
+        key : Date.now(),
+        done :false,
+        text 
+      })
+    },
+    removeElement(key){
+      this.todos = this.todos.filter(item => item.key != key)
   }
-}
+    }
+  }
+
 </script>
 
 <template>
@@ -20,13 +38,14 @@ export default{
         <custom-header></custom-header>
 
         <!-- input todo  -->
-        <InputTodo></InputTodo>
-        
+        <inputTodo @add-todo="addTodo"></inputTodo>
+
         <!-- todo list -->
-        <Todo></Todo>
+        <todo-list :todos="todos" @removeElement="removeElement"></todo-list>
+        
         
         <!-- footer todo app -->
-        <FooterTodo></FooterTodo>
+        <footerTodo></footerTodo>
         
         
       </div>
@@ -68,7 +87,7 @@ header hr{
   background: #fff;
   max-width: 400px;
   width: 100%;
-  margin: 120px auto;
+  margin: 3rem auto;
   padding: 25px;
   border-radius: 5px;
   box-shadow: 0px 10px 15px rgba(0,0,0,0.1);

@@ -26,6 +26,17 @@ export default{
     },
     removeElement(key){
       this.todos = this.todos.filter(item => item.key != key)
+  },
+  editTodo({ key , text }){
+    this.todos = this.todos.map(item=> {
+      if(item.key== key){
+        return{
+          ...item,
+          text : text
+        }
+      }
+      return item;
+    })
   }
     }
   }
@@ -41,7 +52,7 @@ export default{
         <inputTodo @add-todo="addTodo"></inputTodo>
 
         <!-- todo list -->
-        <todo-list :todos="todos" @removeElement="removeElement"></todo-list>
+        <todo-list :todos="todos" @removeElement="removeElement" @edited-todo="editTodo" ></todo-list>
         
         
         <!-- footer todo app -->
